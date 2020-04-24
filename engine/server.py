@@ -1,26 +1,18 @@
-import socket
-import time
-from connection import Connection
+from flask import Flask, request
+from OpenSSL import SSL
 
-class Server:
-    counter = 0
+global app
+global context
 
-    def __init__(self, conf):
-        self.conf = conf
+app = Flask("github_webhooks")
+context = ("/etc/letsencrypt/live/dev.polychromus.com/fullchain.pem", "/etc/letsencrypt/live/dev.polychromus.com/privkey.pem")
 
-    @classmethod
-    def start(cls):
-        sock = socket.socket()
-        port = 8080
 
-        sock.bind(('', port))
-        sock.listen(16)
-        print("Server is listening...")
+@app.route('/github', methods=["POST"])
+def github_webhook():
+    print(request.get_json())
+    return "OK"
 
-        while True:
-            if cls.counter == 16:
-                time.sleep(1)
-                continue
-            client, _ = sock.accept()
-            conn = Connection(client)
-            conn.start()
+
+def run():
+    app.run(host="0.0.0.0", port=8080, ssl_context=context)

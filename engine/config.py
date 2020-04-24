@@ -1,7 +1,6 @@
 import json
 import yaml
 
-
 class EngineConfig:
     def __init__(self):
         try:
@@ -9,7 +8,7 @@ class EngineConfig:
                 conf = json.load(file)
         except FileNotFoundError:
             with open("conf.json", "w") as file:
-                file.write("{'jobs': []}")
+                file.write("{\"jobs\": []}")
                 conf = {"jobs": []}
         
         # Check to make sure config file is valid

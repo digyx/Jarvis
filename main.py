@@ -2,10 +2,6 @@ from engine.index import Engine
 import json
 import sys
 
-def run_subprocess():
-    return
-
-
 if __name__ == "__main__":
     subprocess = False
 
@@ -14,7 +10,7 @@ if __name__ == "__main__":
             subprocess = True
 
     if subprocess:
-        run_subprocess()
+        print("This is a subprocess")
         exit()
     
     Engine.start()

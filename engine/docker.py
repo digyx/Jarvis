@@ -1,11 +1,11 @@
-from config import Config
+from engine.config import JobConfig
 import threading
 import subprocess
 
 class Docker:
     def __init__(self, name, git_repo):
         with open("jarvis.yml", "r") as conf_file:
-            self.conf = Config(conf_file, name, git_repo)
+            self.conf = JobConfig(conf_file, name, git_repo)
         
         self.install_dependencies()
 
