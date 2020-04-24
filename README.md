@@ -3,7 +3,7 @@
 Written in Python.  The engine will create a new Docker container when a change in the Git repo is detected, and then run the job in said container.
 
 ## Config Reference
-``` json
+```
 {
     'jobs': [
         {
